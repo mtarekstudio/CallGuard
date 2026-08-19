@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mtarekstudio.github.io/CallGuard-web/sitemap.xml
+Sitemap: https://mtarekstudio.github.io/CallGuard/sitemap.xml
