@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1457b8">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="description" content="CallGuard - تسجيلاتي هو تطبيق Android لتنظيم تسجيلات المكالمات، البحث بالاسم أو الرقم، عرض وقت وتاريخ ومدة المكالمة، وإضافة ملاحظات مرتبطة بكل تسجيل.">
+<meta name="author" content="Mohamed Tarek">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CallGuard - تسجيلاتي | مسجل المكالمات">
+<meta property="og:description" content="نظّم تسجيلات المكالمات في مكان واحد، وابحث بالاسم أو الرقم وأضف ملاحظة لكل مكالمة.">
+<meta property="og:image" content="assets/app-home.jpg">
+<meta property="og:locale" content="ar_AR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CallGuard - تسجيلاتي">
+<meta name="twitter:description" content="تطبيق Android لتنظيم تسجيلات المكالمات والملاحظات المرتبطة بها.">
+<meta name="twitter:image" content="assets/app-home.jpg">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="REPLACE_WITH_GITHUB_PAGES_URL">
+
+  <meta name="description" content="CallGuard - تسجيلاتي: تطبيق خفيف لتنظيم تسجيلات المكالمات وحفظها وإضافة الملاحظات بسهولة.">
+  <title>CallGuard - تسجيلاتي | مسجل المكالمات وتسجيل المكالمات تلقائيًا للأندرويد</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --blue:#1457b8;
+      --blue2:#0f4ca2;
+      --blue3:#eaf3ff;
+      --teal:#0aa99a;
+      --teal-soft:#eafbf8;
+      --ink:#18243a;
+      --muted:#667085;
+      --bg:#f7f9fc;
+      --card:#ffffff;
+      --line:#e9edf5;
+      --danger:#e5484d;
+      --shadow:0 18px 60px rgba(20,87,184,.11);
+      --radius:24px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Cairo",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--ink);
+      background:var(--bg);
+      line-height:1.8;
+    }
+    a{text-decoration:none;color:inherit}
+    img{display:block;max-width:100%}
+    .container{width:min(1180px,92%);margin:auto}
+    .nav{
+      position:sticky;top:0;z-index:30;
+      backdrop-filter:blur(16px);
+      background:rgba(247,249,252,.85);
+      border-bottom:1px solid rgba(20,87,184,.08);
+    }
+    .nav-inner{height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:24px;color:var(--blue)}
+    .brand-badge{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,var(--blue),#2b84ec);color:#fff;box-shadow:0 9px 22px rgba(20,87,184,.22)}
+    .nav-links{display:flex;align-items:center;gap:26px;color:#506076;font-weight:700;font-size:14px}
+    .nav-links a:hover{color:var(--blue)}
+    .nav-cta{padding:11px 18px;border-radius:14px;background:var(--blue);color:#fff!important;box-shadow:0 10px 24px rgba(20,87,184,.22)}
+    .hero{padding:84px 0 60px;position:relative;overflow:hidden}
+    .hero:before{
+      content:"";position:absolute;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,#dcebff 0%,rgba(220,235,255,0) 68%);
+      top:-180px;left:-120px;pointer-events:none
+    }
+    .hero-grid{display:flex;justify-content:center;align-items:center;text-align:center}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:8px 13px;border-radius:999px;background:var(--blue3);color:var(--blue);font-weight:800;font-size:13px}
+    h1{font-size:clamp(42px,5.4vw,72px);line-height:1.15;margin:18px 0 20px;letter-spacing:-1.5px}
+    h1 span{color:var(--blue)}
+    .hero p{font-size:19px;color:var(--muted);max-width:760px;margin:0 auto 30px}
+    .actions{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+    .btn{display:inline-flex;justify-content:center;align-items:center;gap:8px;padding:14px 21px;border-radius:16px;font-weight:800;border:1px solid transparent;transition:.2s transform,.2s box-shadow}
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{background:var(--blue);color:#fff;box-shadow:0 15px 30px rgba(20,87,184,.22)}
+    .btn-secondary{background:#fff;border-color:var(--line);color:var(--ink)}
+    .note{margin-top:14px;font-size:12px;color:#8a94a6}
+    .phone-img{border-radius:24px;background:#eef3fa;padding:10px}.product-preview span{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+
+    .mini-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+    .mini-strip div{background:#f7f9fc;border:1px solid var(--line);padding:12px;border-radius:16px;text-align:center;font-size:12px;font-weight:800}
+    section{padding:88px 0}
+    .section-head{text-align:center;max-width:760px;margin:0 auto 42px}
+    .section-head h2{font-size:clamp(30px,4vw,44px);margin:0 0 12px}
+    .section-head p{margin:0;color:var(--muted)}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .feature{
+      background:#fff;border:1px solid var(--line);border-radius:22px;padding:26px;box-shadow:0 10px 35px rgba(24,36,58,.05)
+    }
+    .icon{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;background:var(--blue3);color:var(--blue);font-size:22px;margin-bottom:18px}
+    .feature h3{margin:0 0 8px;font-size:20px}
+    .feature p{margin:0;color:var(--muted);font-size:15px}
+    .showcase{background:#fff}
+    .showcase-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+    .shot{background:#f5f8fc;border:1px solid var(--line);border-radius:26px;padding:14px;overflow:hidden}
+    .shot img{width:100%;height:470px;object-fit:cover;object-position:top;border-radius:18px}
+    .shot-caption{padding:14px 8px 4px;font-weight:800}
+    .shot-caption span{display:block;font-size:13px;color:var(--muted);font-weight:500;margin-top:2px}
+    .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .step{position:relative;padding:26px;background:#fff;border:1px solid var(--line);border-radius:22px}
+    .step-num{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:var(--blue);color:#fff;font-weight:900;margin-bottom:16px}
+    .step h3{font-size:18px;margin:0 0 6px}.step p{margin:0;color:var(--muted);font-size:14px}
+    .trust{background:linear-gradient(180deg,#f8fbff 0%,#eef7ff 100%)}
+    .trust-box{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
+    .trust-card{background:#fff;border:1px solid var(--line);border-radius:28px;padding:30px;box-shadow:var(--shadow)}
+    .check{display:flex;gap:10px;align-items:flex-start;margin:12px 0;color:#4f5d73}
+    .check b{color:var(--teal)}
+    .testimonial-wrap{display:grid;grid-template-columns:1fr .9fr;gap:22px;align-items:start}
+    .review-form,.reviews{background:#fff;border:1px solid var(--line);border-radius:24px;padding:26px;box-shadow:0 10px 35px rgba(24,36,58,.05)}
+    label{display:block;font-weight:800;font-size:13px;margin-bottom:7px}
+    input,textarea{width:100%;border:1px solid #dbe2ec;border-radius:14px;padding:12px 14px;font:inherit;background:#fcfdff;outline:none}
+    input:focus,textarea:focus{border-color:#8db7ef;box-shadow:0 0 0 4px rgba(20,87,184,.08)}
+    textarea{min-height:120px;resize:vertical}
+    .field{margin-bottom:14px}
+    .review{padding:16px 0;border-bottom:1px solid var(--line)}.review:last-child{border-bottom:0}
+    .review-top{display:flex;justify-content:space-between;gap:12px;align-items:center}
+    .review-name{font-weight:900}.stars{color:#f6b940;letter-spacing:1px}.review small{color:#8a94a6}.review p{margin:6px 0 0;color:#566277}
+    .download{background:var(--blue);color:#fff}
+    .download-box{display:flex;align-items:center;justify-content:space-between;gap:30px;background:linear-gradient(135deg,#1355b6,#0f4ca2);padding:40px;border-radius:30px;box-shadow:0 24px 55px rgba(20,87,184,.25)}
+    .download h2{margin:0 0 8px;font-size:36px}.download p{margin:0;color:#dbeaff}
+    .download .btn{background:#fff;color:var(--blue)}
+    footer{padding:28px 0;color:#7b8798;font-size:13px}
+    .footer-inner{display:flex;justify-content:space-between;gap:20px;align-items:center}
+    .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(30px);background:#18243a;color:#fff;padding:12px 18px;border-radius:14px;opacity:0;pointer-events:none;transition:.25s;z-index:50}
+    .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+    @media (max-width:980px){
+      .hero-grid,.trust-box,.testimonial-wrap{grid-template-columns:1fr}
+      .grid-3{grid-template-columns:1fr 1fr}
+      .steps{grid-template-columns:1fr 1fr}
+      .nav-links a:not(.nav-cta){display:none}
+    }
+    @media (max-width:650px){
+      .nav-inner{height:68px}
+      .brand{font-size:18px}.brand-badge{width:36px;height:36px}
+      .hero{padding-top:54px}
+      h1{font-size:42px}
+      .hero p{font-size:16px}
+      section{padding:66px 0}
+      .grid-3,.showcase-grid,.steps{grid-template-columns:1fr}
+      .shot img{height:460px}
+      .download-box{padding:28px;flex-direction:column;align-items:flex-start}
+      .download h2{font-size:28px}
+      .footer-inner{flex-direction:column;align-items:flex-start}
+    }
+  .privacy-link{display:inline-flex;padding:9px 14px;border:1px solid #dbe3ef;border-radius:12px;background:#fff;color:#1457b8;font-weight:800}.privacy-link:hover{background:#f3f7fd}</style>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"CallGuard - تسجيلاتي","applicationCategory":"UtilitiesApplication","operatingSystem":"Android","description":"تطبيق Android لتنظيم تسجيلات المكالمات والبحث عنها وإضافة ملاحظات مرتبطة بكل تسجيل.","downloadUrl":"https://github.com/user-attachments/files/31238684/CallGuard.zip","author":{"@type":"Person","name":"Mohamed Tarek"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","name":"CallGuard - تسجيلاتي","inLanguage":"ar"}
+</script>
+
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#top"><span class="brand-badge">🛡️</span> CallGuard - تسجيلاتي</a>
+      <nav class="nav-links">
+        <a href="#features">المميزات</a>
+        <a href="#screens">من داخل التطبيق</a>
+        <a href="#how">كيف يعمل</a>
+        <a href="#reviews">آراء المستخدمين</a>
+        <a class="nav-cta" href="#download">تنزيل التطبيق</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">خفيف • بسيط • منظم</div>
+          <h1>كل مكالمة تفضل <span>مرتبة قدامك</span> وقت ما تحتاجها.</h1>
+          <p>CallGuard - تسجيلاتي يجمع تسجيلات المكالمات في مكان واحد، ويعرض لك بيانات كل مكالمة بوضوح، مع إمكانية كتابة ملاحظة مرتبطة بها بدل ما تنسى تفاصيلها.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="https://github.com/user-attachments/files/31238684/CallGuard.zip" id="downloadTop">⬇️ تنزيل التطبيق</a>
+            <a class="btn btn-secondary" href="#screens">📱 شوف التطبيق من الداخل</a>
+          </div>
+          <div class="note">رابط التنزيل الحالي تجريبي — عدّله لاحقًا إلى رابط التطبيق الحقيقي.</div>
+        </div>
+      </div>
+    </div>
+    </section>
+
+    <section id="features">
+      <div class="container">
+        <div class="section-head">
+          <h2>الحاجات المهمة قدامك، من غير زحمة</h2>
+          <p>فتح التطبيق، اختيار المكالمة، وتشغيل التسجيل — كل خطوة واضحة ومباشرة.</p>
+        </div>
+        <div class="grid-3">
+          <article class="feature"><div class="icon">🎙️</div><h3>تسجيل وتنظيم المكالمات</h3><p>إدارة تسجيلات المكالمات داخل التطبيق بشكل مرتب وسهل الاستخدام.</p></article>
+          <article class="feature"><div class="icon">👤</div><h3>اسم أو رقم المتصل</h3><p>لو الاسم محفوظ يظهر الاسم، ولو الرقم غير معروف يظهر الرقم مع إمكانية تعديل الاسم فقط.</p></article>
+          <article class="feature"><div class="icon">🕒</div><h3>التاريخ والوقت والمدة</h3><p>تظهر بيانات المكالمة بوضوح لمساعدة المستخدم في الوصول للتسجيل المناسب.</p></article>
+          <article class="feature"><div class="icon">📝</div><h3>ملاحظة لكل مكالمة</h3><p>اكتب ملاحظتك مرتبطة بالمكالمة، افتحها وأغلقها بسهم، وعدّلها أو احذفها وقت الحاجة.</p></article>
+          <article class="feature"><div class="icon">🗑️</div><h3>تنظيف تلقائي</h3><p>يمكن تصميم التطبيق لحذف التسجيلات القديمة تلقائيًا وفق مدة الاحتفاظ المحددة.</p></article>
+          <article class="feature"><div class="icon">🔒</div><h3>خصوصية وتنظيم</h3><p>واجهة واضحة ومرتبة تساعد على إبقاء التسجيلات والملاحظات داخل التطبيق بطريقة سهلة الوصول.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="screens" class="showcase">
+      <div class="container">
+        <div class="section-head">
+          <h2>شوف التطبيق من الداخل</h2>
+          <p>صور حقيقية من الواجهات الحالية للتطبيق.</p>
+        </div>
+        <div class="showcase-grid">
+          <figure class="shot">
+            <img src="assets/app-home.jpg" alt="الشاشة الرئيسية لتطبيق CallGuard">
+            <figcaption class="shot-caption">الشاشة الرئيسية<span>التسجيلات والبحث والتحكم في التسجيل التلقائي.</span></figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="assets/app-recordings.png" alt="سجل المكالمات">
+            <figcaption class="shot-caption">سجل المكالمات<span>تفاصيل المكالمة والتسجيل في نفس البطاقة.</span></figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="assets/app-settings.png" alt="إعدادات التطبيق">
+            <figcaption class="shot-caption">الإعدادات والخصوصية<span>البصمة والربط والخيارات الإضافية.</span></figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="assets/app-note.png" alt="الملاحظة المرتبطة بالمكالمة">
+            <figcaption class="shot-caption">ملاحظة المكالمة<span>الملاحظة تظهر داخل بطاقة المكالمة ويمكن فتحها أو إغلاقها.</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="how">
+      <div class="container">
+        <div class="section-head">
+          <h2>استخدامه بسيط</h2>
+          <p>كل حاجة موجودة في مكانها، من أول التسجيل لحد الملاحظة.</p>
+        </div>
+        <div class="steps">
+          <div class="step"><div class="step-num">1</div><h3>افتح التطبيق</h3><p>فعّل الإعدادات المطلوبة على جهازك وابدأ باستخدام التطبيق.</p></div>
+          <div class="step"><div class="step-num">2</div><h3>اختار المكالمة</h3><p>تصفح التسجيلات وابحث بالاسم أو الرقم للوصول بسرعة.</p></div>
+          <div class="step"><div class="step-num">3</div><h3>اكتب ملاحظتك</h3><p>اكتب ملاحظتك تحت نفس المكالمة، وافتحها أو اقفلها بالسهم وقت ما تحب.</p></div>
+          <div class="step"><div class="step-num">4</div><h3>ارجع لها وقت الحاجة</h3><p>افتح الملاحظة أو عدّلها أو احذفها عندما تريد.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="trust">
+      <div class="container trust-box">
+        <div>
+          <div class="eyebrow">مصمم للاستخدام اليومي</div>
+          <h2 style="font-size:42px;line-height:1.25;margin:18px 0 14px">التسجيل والمعلومة المهمة يفضلوا مع بعض.</h2>
+          <p style="color:var(--muted);max-width:620px">مش هتحتاج تفتكر اسم ملف أو تدور في مجلدات؛ كل تسجيل ظاهر داخل سجل واضح.</p>
+        </div>
+        <div class="trust-card">
+          <div class="check"><b>✓</b><span>تخطيط واضح ومناسب للموبايل.</span></div>
+          <div class="check"><b>✓</b><span>عرض التفاصيل المهمة للمكالمة بدون زحمة.</span></div>
+          <div class="check"><b>✓</b><span>ملاحظة داخل نفس بطاقة المكالمة.</span></div>
+          <div class="check"><b>✓</b><span>أزرار تعديل وحذف صغيرة عند فتح الملاحظة.</span></div>
+        </div>
+      </div>
+    </section>
+
+    
+<section id="faq" class="section">
+  <div class="container">
+    <div class="section-head">
+      <h2>أسئلة شائعة عن تسجيل المكالمات</h2>
+      <p>أهم الأسئلة التي قد تدور في بالك قبل تنزيل التطبيق.</p>
+    </div>
+    <div class="grid-3">
+      <article class="feature"><div class="icon">📞</div><h3>هل CallGuard يسجل المكالمات تلقائيًا؟</h3><p>التطبيق مخصص لتسجيل وتنظيم المكالمات التي يدعم الهاتف وإصدار Android تسجيلها، وقد تختلف الإمكانية حسب الجهاز.</p></article>
+      <article class="feature"><div class="icon">🔎</div><h3>هل أستطيع البحث عن تسجيل؟</h3><p>نعم، يمكنك الوصول للتسجيلات بالاسم أو الرقم، مع استخدام الملاحظات المرتبطة بالمكالمات لتسهيل الرجوع إليها.</p></article>
+      <article class="feature"><div class="icon">📝</div><h3>هل أستطيع إضافة ملاحظة؟</h3><p>نعم، لكل تسجيل ملاحظة خاصة به يمكن فتحها أو إغلاقها وتعديلها أو حذفها.</p></article>
+      <article class="feature"><div class="icon">📱</div><h3>هل يعمل على كل هواتف Android؟</h3><p>تسجيل المكالمات يختلف بين الشركات وإصدارات Android وقيود النظام، لذلك لا يوجد وعد بتوافق كامل مع كل الأجهزة.</p></article>
+      <article class="feature"><div class="icon">🔐</div><h3>أين تحفظ التسجيلات؟</h3><p>بحسب سياسة التطبيق الحالية، التسجيلات تُحفظ محليًا على الهاتف، ويمكن تفعيل النسخ الاحتياطي الاختياري إلى Google Drive الشخصي.</p></article>
+      <article class="feature"><div class="icon">⚖️</div><h3>هل تسجيل المكالمات قانوني؟</h3><p>القوانين تختلف حسب الدولة وقد تتطلب موافقة الأطراف. المستخدم مسؤول عن الالتزام بالقوانين المحلية قبل التسجيل.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="reviews">
+      <div class="container">
+        <div class="section-head">
+          <h2>آراء المستخدمين</h2>
+          <p>جرّبت CallGuard؟ اكتب لنا رأيك. النموذج الحالي تجريبي، وبعد ربط الموقع بقاعدة البيانات ستظهر الآراء للجميع.</p>
+        </div>
+        <div class="testimonial-wrap">
+          <form class="review-form" id="reviewForm">
+            <div class="field"><label for="name">الاسم</label><input id="name" name="name" maxlength="40" placeholder="اكتب اسمك"></div>
+            <div class="field"><label for="message">رأيك في التطبيق</label><textarea id="message" name="message" maxlength="300" placeholder="اكتب تجربتك هنا..."></textarea></div>
+            <div class="field">
+              <label>التقييم</label>
+              <select id="rating" style="width:100%;padding:12px 14px;border:1px solid #dbe2ec;border-radius:14px;font:inherit;background:#fcfdff">
+                <option value="5">★★★★★ - ممتاز</option>
+                <option value="4">★★★★☆ - جيد جدًا</option>
+                <option value="3">★★★☆☆ - جيد</option>
+                <option value="2">★★☆☆☆ - يحتاج تحسين</option>
+                <option value="1">★☆☆☆☆ - ضعيف</option>
+              </select>
+            </div>
+            <button class="btn btn-primary" style="width:100%" type="submit">إرسال رأيي</button>
+          </form>
+
+          <div class="reviews" id="reviewsList"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="download" class="download">
+      <div class="container">
+        <div class="download-box">
+          <div>
+            <h2>جاهز تجرب CallGuard؟</h2>
+            <p>نزّل التطبيق وابدأ من أول مكالمة.</p>
+          </div>
+          <a class="btn" id="downloadBtn" href="https://github.com/user-attachments/files/31238684/CallGuard.zip">⬇️ تنزيل التطبيق</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>© <span id="year"></span> CallGuard - تسجيلاتي</div>
+      <div>رابط التنزيل الحالي تجريبي ويمكن تعديله من ملف index.html.</div>
+    </div>
+  <div style="text-align:center;margin-top:10px"><a class="privacy-link" href="privacy.html">Privacy Policy | سياسة الخصوصية</a></div></footer>
+
+  <div class="toast" id="toast">تم إرسال رأيك بنجاح.</div>
+
+  <script>
+    const demoReviews = [
+      {name:"أحمد", rating:5, message:"التطبيق شكله بسيط وواضح جدًا، وفكرة الملاحظات على كل مكالمة ممتازة.", date:"منذ فترة قصيرة"},
+      {name:"محمود", rating:5, message:"أكثر حاجة عجبتني إن كل مكالمة لها تفاصيلها وملاحظتها في نفس المكان.", date:"منذ فترة قصيرة"},
+      {name:"سارة", rating:4, message:"الواجهة خفيفة وسهلة، ومستنية الإصدار النهائي.", date:"منذ فترة قصيرة"}
+    ];
+
+    const list = document.getElementById("reviewsList");
+    const form = document.getElementById("reviewForm");
+    const toast = document.getElementById("toast");
+
+    function stars(n){ return "★".repeat(n) + "☆".repeat(5-n); }
+
+    function renderReviews(){
+      const saved = JSON.parse(localStorage.getItem("callguard_reviews") || "[]");
+      const all = [...saved, ...demoReviews];
+      list.innerHTML = all.map(r => `
+        <div class="review">
+          <div class="review-top">
+            <div class="review-name">${escapeHtml(r.name || "زائر")}</div>
+            <div class="stars" aria-label="تقييم ${r.rating} من 5">${stars(Number(r.rating)||5)}</div>
+          </div>
+          <small>${escapeHtml(r.date || "الآن")}</small>
+          <p>${escapeHtml(r.message || "")}</p>
+        </div>
+      `).join("");
+    }
+
+    function escapeHtml(str){
+      return String(str).replace(/[&<>"']/g, m => ({
+        "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+      }[m]));
+    }
+
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      const message = document.getElementById("message").value.trim();
+      const rating = Number(document.getElementById("rating").value);
+      if(!name || !message){
+        alert("من فضلك اكتب الاسم والرأي أولًا.");
+        return;
+      }
+      const saved = JSON.parse(localStorage.getItem("callguard_reviews") || "[]");
+      saved.unshift({name, message, rating, date:"الآن"});
+      localStorage.setItem("callguard_reviews", JSON.stringify(saved.slice(0, 20)));
+      form.reset();
+      renderReviews();
+      toast.classList.add("show");
+      setTimeout(()=>toast.classList.remove("show"), 2200);
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+    renderReviews();
+  </script>
+</body>
+</html>
