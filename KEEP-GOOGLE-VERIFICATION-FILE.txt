@@ -1,0 +1,2 @@
+Important: keep the existing Google Search Console verification HTML file from your current repository when uploading this package.
+Do not delete googled1728835e081d981.html if it is still used for Search Console ownership verification.

@@ -1,0 +1,11 @@
+{
+  "name": "CallGuard - تسجيلاتي",
+  "short_name": "CallGuard",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "https://mtarekstudio.github.io/CallGuard/",
+  "display": "standalone",
+  "background_color": "#f7f9fc",
+  "theme_color": "#1457b8",
+  "description": "تطبيق Android لتنظيم تسجيلات المكالمات وإضافة الملاحظات."
+}
