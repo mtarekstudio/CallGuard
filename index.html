@@ -209,6 +209,19 @@ footer{background:var(--navy-deep);color:#93A2BC;padding:56px 0 28px;font-size:1
 .reveal.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
 
+
+.how-to-use{background:#EEF1F7}
+.video-player{max-width:900px;margin:0 auto;background:#0E1B33;border:1px solid rgba(11,31,58,.12);border-radius:22px;padding:10px;box-shadow:var(--shadow)}
+.video-wrap{position:relative;border-radius:16px;overflow:hidden;background:#000}
+.video-wrap video{width:100%;display:block;background:#000;max-height:600px}
+.video-shortcuts{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;padding:12px 8px 4px}
+.video-shortcut{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.16);border-radius:10px;padding:8px 14px;font:700 14px 'Tajawal',sans-serif;cursor:pointer}
+.video-shortcut:hover{background:rgba(212,160,23,.18);border-color:rgba(212,160,23,.35);color:var(--gold-light)}
+@media (max-width:640px){
+  .video-player{padding:7px;border-radius:18px}
+  .video-shortcut{font-size:13px;padding:8px 12px}
+}
+
 .footer-page-links{margin:22px 0 26px;padding-top:22px;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
 .footer-page-btn{display:inline-flex;align-items:center;justify-content:center;padding:9px 14px;border:1px solid rgba(255,255,255,.12);border-radius:10px;background:rgba(255,255,255,.03);color:#B9C5DA!important;font-size:13px;transition:.2s ease}
 .footer-page-btn:hover{background:rgba(212,160,23,.12);border-color:rgba(212,160,23,.35);color:#F0C766!important;transform:translateY(-1px)}
@@ -227,6 +240,7 @@ footer{background:var(--navy-deep);color:#93A2BC;padding:56px 0 28px;font-size:1
       <a href="#faq">الأسئلة الشائعة</a>
       <a href="#reviews">آراء المستخدمين</a>
       <a href="guides/">تسجيل المكالمات</a>
+      <a href="#how-to-use">طريقة التشغيل</a>
       <a href="privacy.html">سياسة الخصوصية</a>
       <a href="#download" class="nav-cta">تحميل التطبيق</a>
     </nav>
@@ -361,6 +375,28 @@ footer{background:var(--navy-deep);color:#93A2BC;padding:56px 0 28px;font-size:1
   </div>
 </section>
 
+<section class="section how-to-use" id="how-to-use">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow on-light">طريقة التشغيل</span>
+      <h2>شوف طريقة تشغيل CallGuard</h2>
+      <p>فيديو توضيحي يشرح خطوات تشغيل التطبيق واستخدامه.</p>
+    </div>
+    <div class="video-player">
+      <div class="video-wrap">
+        <video id="howToUseVideo" controls preload="metadata" playsinline>
+          <source src="assets/فيديو توضيحي لطريقه التشغيل.mp4" type="video/mp4">
+          متصفحك لا يدعم تشغيل الفيديو.
+        </video>
+      </div>
+      <div class="video-shortcuts" aria-label="أزرار الفيديو">
+        <button type="button" class="video-shortcut" id="videoBack10">↶ 10 ثواني</button>
+        <button type="button" class="video-shortcut" id="videoForward10">10 ثواني ↷</button>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="section" id="reviews" style="background:#EEF1F7">
   <div class="container">
     <div class="section-head center">
@@ -407,6 +443,7 @@ footer{background:var(--navy-deep);color:#93A2BC;padding:56px 0 28px;font-size:1
           <a href="#features">المميزات</a>
           <a href="#screenshots">لقطات من التطبيق</a>
           <a href="#reviews">آراء المستخدمين</a>
+          <a href="#how-to-use">طريقة التشغيل</a>
           <a href="#download">تحميل</a>
         </div>
         <div class="footer-col">
@@ -434,6 +471,17 @@ document.getElementById('navToggle').addEventListener('click',function(){
 document.querySelectorAll('.nav-links a').forEach(function(a){
   a.addEventListener('click',function(){document.getElementById('navLinks').classList.remove('open');});
 });
+var howToUseVideo = document.getElementById('howToUseVideo');
+var videoBack10 = document.getElementById('videoBack10');
+var videoForward10 = document.getElementById('videoForward10');
+
+videoBack10.addEventListener('click',function(){
+  howToUseVideo.currentTime = Math.max(0, howToUseVideo.currentTime - 10);
+});
+videoForward10.addEventListener('click',function(){
+  howToUseVideo.currentTime = Math.min(howToUseVideo.duration || Infinity, howToUseVideo.currentTime + 10);
+});
+
 
 var io = new IntersectionObserver(function(entries){
   entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); } });
